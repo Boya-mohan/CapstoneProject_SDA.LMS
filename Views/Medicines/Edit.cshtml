@@ -1,0 +1,61 @@
+@model Medicine;
+@using mohan_CapstoneProject_SDA.LMS.Data;
+
+
+@{
+    ViewData["Title"] = "Edit Medicine item";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2" style="z-index:1">
+        <p>
+            <h1>Edit or Delete Medicine item</h1>
+        </p>
+        <br />
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="alert alert-warning col-md-12"><i class="bi bi-exclamation-triangle-fill"></i> Write image name (as Integer), save it at ~/Images/UX_UI_Design/ file with png extension</div>
+                        <label asp-for="ImageCode" class="control-label"></label><br />
+                        <input asp-for="ImageCode" class="form-control" />
+                        <span asp-validation-for="ImageCode" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label><br />
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label><br />
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="MedicineCategory" class="control-label"></label><br />
+                        <select asp-for="MedicineCategory" class="form-control" asp-items="Html.GetEnumSelectList<MedicineCategory>()"></select>
+                        <span asp-validation-for="MedicineCategory" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label><br />
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update Item" class="btn btn-outline-success float-right" /><span class="float-right">&nbsp;&nbsp;</span>
+
+                    </div>
+                </form>
+                <a class="btn btn-outline-danger float-right" asp-action="Delete" asp-route-ID="@Model.ID"><i class="bi bi-trash-fill">Delete</i></a>
+                <a class="btn btn-outline-info" asp-action="Index"><i class="bi bi-arrow-left-square-fill"> Back, All Items</i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 offset-2"><img class="float-right" src="~/Images/UX_UI_Design/Edit_Item.png" style="height: 46%; width: 26%; position: fixed; right: 30px; bottom: 48px; z-index: 0;" /></div>
