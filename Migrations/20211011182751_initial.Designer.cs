@@ -20,7 +20,7 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.Medicine", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.Medicine", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
