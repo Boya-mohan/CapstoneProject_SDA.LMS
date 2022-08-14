@@ -1,0 +1,50 @@
+@using mohan_CapstoneProject_SDA.LMS.Data.ViewModels;
+@model RegisterVM
+@{
+    ViewData["Title"] = "Sign up";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3" >
+        <p>
+            <h4>Sign up to your account</h4>
+        </p>
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger"><span><b>Sorry!</b> - @TempData["Error"]</span></div>
+        }
+        <div class="row">
+            <div class="col-md-8 offset-2" style="z-index:1">
+                @*// forms by default perform request post*@
+                <form asp-action="Register">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label"></label><br />
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label"></label><br />
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label><br />
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="control-label"></label><br />
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Sign up" class="btn btn-success float-right" />
+                        <a class="btn btn-outline-info" asp-controller="Medicines" asp-action="Index"><i class="bi bi-arrow-left-square-fill"> Cancel</i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 offset-2"><img class="float-right" src="~/Images/UX_UI_Design/Register.png" style="height: 46%; width: 26%; position: fixed; right: 220px; bottom: 27.9px; z-index: 0;"/></div>
