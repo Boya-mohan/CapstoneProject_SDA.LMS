@@ -1,0 +1,64 @@
+@model List<Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p><h4>List of all orders</h4></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>
+                        <div class="text-center">
+                            Items Detalils
+                            <div class="badge badge-info text-black-50"><span class="badge bg-success">Quantity</span> - [price] - Item Name</div>
+                        </div>
+                    </th>
+                    <th>Total</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>User</th>
+                    }
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                <tr>
+                    <td class="align-middle">@order.ID</td>
+                    <td class="align-middle">
+                        <ul style="list-style-type:none">
+                            @foreach (var item in order.OrderItems)
+                            {
+                                <li>
+                                    <div class="alert alert-info" role="alert">
+                                        <span class="badge bg-success">@item.Amount</span> - [@item.Price.ToString("c")] - @item.Medicine.Name
+                                    </div>
+                                </li>
+
+                            }
+                        </ul>
+                    </td>
+                    <td>@order.OrderItems.Select(t => t.Price * t.Amount).Sum().ToString("c")</td>
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td>@order.User.FullName</td>
+                    }
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <a class="btn btn-outline-info" asp-controller="Medicines" asp-action="Index"><i class="bi bi-arrow-left-square-fill"> Back Home Page</i></a>
+    </div>
+    <div class="col-md-8 offset-2"><img class="float-right" src="~/Images/UX_UI_Design/Orders_Cart.png" style="height:100%;width: 40%"/></div>
+
+</div>
