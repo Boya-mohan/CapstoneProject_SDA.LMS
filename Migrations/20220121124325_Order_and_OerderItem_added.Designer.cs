@@ -20,7 +20,7 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.Medicine", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.Medicine", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                     b.ToTable("Medicines");
                 });
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.Order", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.Order", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.OrderItem", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.OrderItem", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -96,15 +96,15 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.OrderItem", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.OrderItem", b =>
                 {
-                    b.HasOne("malshetwi_CapstoneProject_SDA.LMS.Models.Medicine", "Medicine")
+                    b.HasOne("mohan_CapstoneProject_SDA.LMS.Models.Medicine", "Medicine")
                         .WithMany()
                         .HasForeignKey("MedicineID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("malshetwi_CapstoneProject_SDA.LMS.Models.Order", "Order")
+                    b.HasOne("mohan_CapstoneProject_SDA.LMS.Models.Order", "Order")
                         .WithMany("OrderItem")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -115,7 +115,7 @@ namespace mohan_CapstoneProject_SDA.LMS.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("malshetwi_CapstoneProject_SDA.LMS.Models.Order", b =>
+            modelBuilder.Entity("mohan_CapstoneProject_SDA.LMS.Models.Order", b =>
                 {
                     b.Navigation("OrderItem");
                 });
