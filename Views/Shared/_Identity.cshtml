@@ -1,0 +1,54 @@
+@*V.91 Partial View Created, move these sections from _Layout to here*@
+
+@inject UserManager<ApplicationUser> UserManager;
+@if (!User.Identity.IsAuthenticated)
+{
+    @*Login & Register*@
+    <a class="btn btn-outline-info" asp-controller="Account" asp-action="Login">
+        <i class="bi bi-box-arrow-in-right"></i> Log in
+    </a>
+    <span style="padding:3px"></span>
+    <a class="btn btn-outline-success" asp-controller="Account" asp-action="Register">
+        <i class="bi bi-person-plus"></i> Register
+    </a>
+}
+else
+{
+    @*User profile Section*@
+    <div class="dropdown">
+        <button class="btn btn-outline-info dropdown-toggle" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-badge"></i> Hello @UserManager.GetUserName(User)
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="profile-btn">
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                        <i class="bi bi-list"></i> All Orders
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="bi bi-people"></i> App Users
+                    </a>
+                </li>
+ }
+            else
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                        <i class="bi bi-list"></i> My Orders
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>@*// profile Section ends, Vid: 76 *@
+    <span style="padding:3px"></span>
+    @*Log out*@
+    <form asp-controller="Account" asp-action="Logout">
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <i class="bi bi-box-arrow-in-right"></i> Log out
+        </button>
+    </form>
+}
+
